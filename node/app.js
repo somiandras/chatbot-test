@@ -17,6 +17,7 @@ const
   express = require('express'),
   https = require('https'),  
   request = require('request');
+  morgan = require('morgan');
 
 var app = express();
 app.set('port', process.env.PORT || 3000);
@@ -55,6 +56,8 @@ if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN && SERVER_URL)) {
   console.error("Missing config values");
   process.exit(1);
 }
+
+app.use(morgan('dev'));
 
 /*
  * Use your own validation token. Check that the token used in the Webhook 
